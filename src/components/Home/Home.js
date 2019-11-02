@@ -6,7 +6,6 @@ const Home = () => {
 		marginTop:  '10%',
   		marginLeft: '35%'
 	}
-
 	const bigHeadingStyle = {
 		color : '#dbd5d0',
 		fontWeight: 'bold',

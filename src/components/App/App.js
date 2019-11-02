@@ -4,9 +4,10 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import '../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 import '../../../node_modules/bootstrap-css-only/css/bootstrap.min.css';
 import '../../../node_modules/mdbreact/dist/css/mdb.css';
+
 import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
-import Registration from '../Registration/Registration';
+import Register from '../Register/Register';
 import Login from '../Login/Login';
 import './App.css';
 
@@ -18,7 +19,7 @@ function App() {
   			<Switch>
   				<Route exact path = "/" component = {Home}/>
   				<Route path = "/login" component = {Login}/>
-  				<Route path = "/register" component = {Registration}/>
+  				<Route path = "/register" component = {Register}/>
   			</Switch>
 	    </Router>
 	</div>

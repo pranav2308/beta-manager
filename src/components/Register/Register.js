@@ -56,7 +56,7 @@ const Registration = () => {
                     className="mb-3"
                     type="submit"
                   >
-                    Login
+                    Register
                   </MDBBtn>
                 </div>
                 </form>
