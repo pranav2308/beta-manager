@@ -11,6 +11,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Dashboard from '../Dashboard/Dashboard';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import Logout from '../Logout/Logout';
 import './App.css';
 
 class App extends React.Component{
@@ -25,20 +26,28 @@ class App extends React.Component{
   }
 
   authenticateUser = () => {
-    this.setState({userAuthenticated : true});
-    
+    if(!this.state.userAuthenticated){
+      this.setState({ userAuthenticated : true });  
+    }
+  }
+
+  flushUser = () => {
+    if(this.state.userAuthenticated){
+      this.setState({ userAuthenticated : false });  
+    }
   }
 
   render(){
     return (
       <div>
         <Router>
-          <Navbar/> 
+          <Navbar userAuthenticated = {this.state.userAuthenticated}/> 
           <Switch>
             <Route exact path = "/" component = {Home}/>
             <Route path = "/login" render = {(props) => <Login {...props} authenticateUser = {this.authenticateUser}/>}/>
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
             <PrivateRoute path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
+            <Route path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
           </Switch>
         </Router>
       </div>

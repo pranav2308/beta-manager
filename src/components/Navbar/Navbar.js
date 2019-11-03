@@ -20,6 +20,36 @@ class Navbar extends React.Component {
   }
 
   render() {
+
+    const { userAuthenticated } = this.props;
+    let navbarRenderContent;
+    
+    if(userAuthenticated){
+      navbarRenderContent = 
+        <MDBNavbarNav left>
+          <MDBNavItem>
+            <MDBNavLink to="/dashboard">Dashboard</MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem >
+            <MDBNavLink to="/logout">Log out</MDBNavLink>
+          </MDBNavItem>
+        </MDBNavbarNav>;
+    }
+    else{
+      navbarRenderContent = 
+        <MDBNavbarNav left>
+          <MDBNavItem>
+            <MDBNavLink to="/">Home</MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem >
+            <MDBNavLink to="/login">Log In</MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink to="/register">Register</MDBNavLink>
+          </MDBNavItem>
+        </MDBNavbarNav>;
+    }
+
     return (
       <div>
         <header>
@@ -29,17 +59,7 @@ class Navbar extends React.Component {
             </MDBNavbarBrand>
             {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
             <MDBCollapse isOpen={this.state.collapse} navbar>
-              <MDBNavbarNav left>
-                <MDBNavItem>
-                  <MDBNavLink to="/">Home</MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem >
-                  <MDBNavLink to="/login">Log In</MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink to="/register">Register</MDBNavLink>
-                </MDBNavItem>
-              </MDBNavbarNav>
+              { navbarRenderContent }
             </MDBCollapse>
           </MDBNavbar>
         </header>
