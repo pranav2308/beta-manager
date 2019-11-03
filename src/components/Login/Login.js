@@ -14,12 +14,18 @@ class Login extends React.Component{
     super(props);
   }
 
+  onLoginButtonClick = () => {
+    this.props.authenticateUser();
+    this.props.history.push('/dashboard');
+  }
+
   onRegisterLinkClick = () =>{
     this.props.history.push('/register');
   }
 
   render(){
-    const { authenticateUser } = this.props;
+    
+    console.log(this.props);
     return(
       <div className = "authentication">
         <MDBContainer>
@@ -56,11 +62,11 @@ class Login extends React.Component{
                     <MDBBtn
                       color="deep-orange"
                       className="mb-3"
-                      type="submit"
-                      onClick = {authenticateUser}
+                      type="button"
+                      onClick = {this.onLoginButtonClick}
                     >
                       Login
-                    </MDBBtn>
+                    </MDBBtn>  
                   </div>
                   </form>
                   <MDBModalFooter>

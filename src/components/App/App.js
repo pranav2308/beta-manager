@@ -9,20 +9,24 @@ import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import Dashboard from '../Dashboard/Dashboard';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import './App.css';
 
 class App extends React.Component{
 
   constructor(props){
+    
     super(props);
     this.state = {
-      isAuthenticated : false
+      userAuthenticated : false
     }
+    this.authenticateUser = this.authenticateUser.bind(this);
   }
 
   authenticateUser = () => {
-    this.setState({isAuthenticated : true});
-    console.log('signed in!')
+    this.setState({userAuthenticated : true});
+    
   }
 
   render(){
@@ -34,6 +38,7 @@ class App extends React.Component{
             <Route exact path = "/" component = {Home}/>
             <Route path = "/login" render = {(props) => <Login {...props} authenticateUser = {this.authenticateUser}/>}/>
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
+            <PrivateRoute path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
           </Switch>
         </Router>
       </div>

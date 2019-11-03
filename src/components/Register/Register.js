@@ -15,12 +15,17 @@ class Registration extends React.Component{
     super(props);
   }
 
+  onRegisterButtonClick = () => {
+    this.props.authenticateUser();
+    this.props.history.push('/dashboard');
+  }
+
   onLoginLinkClick = () =>{
     this.props.history.push('/login');
   }
 
   render(){
-    const { authenticateUser } = this.props;
+    
     
     return(
       <div className = "authentication">
@@ -74,8 +79,8 @@ class Registration extends React.Component{
                     <MDBBtn
                       color="deep-orange"
                       className="mb-3"
-                      type="submit"
-                      onClick = {authenticateUser}
+                      type="button"
+                      onClick = {this.onRegisterButtonClick}
                     >
                       Register
                     </MDBBtn>
