@@ -19,6 +19,7 @@ class Login extends React.Component{
   }
 
   render(){
+    const { authenticateUser } = this.props;
     return(
       <div className = "authentication">
         <MDBContainer>
@@ -56,6 +57,7 @@ class Login extends React.Component{
                       color="deep-orange"
                       className="mb-3"
                       type="submit"
+                      onClick = {authenticateUser}
                     >
                       Login
                     </MDBBtn>

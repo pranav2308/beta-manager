@@ -11,19 +11,34 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import './App.css';
 
-function App() {
-  return (
-  	<div>
-  		<Router>
-  			<Navbar/> 
-  			<Switch>
-  				<Route exact path = "/" component = {Home}/>
-  				<Route path = "/login" component = {Login}/>
-  				<Route path = "/register" component = {Register}/>
-  			</Switch>
-	    </Router>
-	</div>
-  );
+class App extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      isAuthenticated : false
+    }
+  }
+
+  authenticateUser = () => {
+    this.setState({isAuthenticated : true});
+    console.log('signed in!')
+  }
+
+  render(){
+    return (
+      <div>
+        <Router>
+          <Navbar/> 
+          <Switch>
+            <Route exact path = "/" component = {Home}/>
+            <Route path = "/login" render = {(props) => <Login {...props} authenticateUser = {this.authenticateUser}/>}/>
+            <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
+          </Switch>
+        </Router>
+      </div>
+    );  
+  }
 }
 
 export default App;
