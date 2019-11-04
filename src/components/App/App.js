@@ -22,7 +22,6 @@ class App extends React.Component{
     this.state = {
       userAuthenticated : false
     }
-    this.authenticateUser = this.authenticateUser.bind(this);
   }
 
   authenticateUser = () => {
@@ -41,13 +40,13 @@ class App extends React.Component{
     return (
       <div>
         <Router>
-          <Navbar userAuthenticated = {this.state.userAuthenticated}/> 
+          <Route /><Navbar userAuthenticated = {this.state.userAuthenticated}/> 
           <Switch>
             <Route exact path = "/" component = {Home}/>
             <Route path = "/login" render = {(props) => <Login {...props} authenticateUser = {this.authenticateUser}/>}/>
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
             <PrivateRoute path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
-            <Route path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
+            <Route exact path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
           </Switch>
         </Router>
       </div>

@@ -1,0 +1,7 @@
+.inactive {
+	color : #dbd5d0;
+}
+
+.inactive:hover{
+	color : #629c97;
+}
