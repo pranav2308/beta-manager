@@ -26,7 +26,6 @@ class Registration extends React.Component{
 
   render(){
     
-    
     return(
       <div className = "authentication">
         <MDBContainer>

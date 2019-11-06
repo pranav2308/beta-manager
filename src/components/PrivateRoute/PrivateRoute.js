@@ -2,11 +2,12 @@ import React from "react";
 import { Route, Redirect } from 'react-router-dom';
 
 
-const PrivateRoute = ({ component : Component, userAuthenticated }) => {
+const PrivateRoute = (props) => {
 	
-
+	const { component : Component, userAuthenticated } = props;
+	
 	if(userAuthenticated){
-		return <Route render = {(props) => <Component {...props}/>}/>
+		return <Route render = {() => <Component {...props}/>}/>
 	}
 	return <Redirect to = "/login"/>
 }

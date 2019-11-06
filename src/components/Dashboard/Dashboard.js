@@ -15,8 +15,8 @@ const Dashboard = (props) => {
 		fontSize : '150%'
 	}
 
-	const { url } = props.match;
-
+	const { url } = props.computedMatch;
+	
 	return (
 		<table style = {tableStyle}>
 		  <tbody>
