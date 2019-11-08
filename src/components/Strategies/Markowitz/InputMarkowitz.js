@@ -1,10 +1,10 @@
 import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody, MDBIcon } from 'mdbreact';
 import CurrencyInput from 'react-currency-input';
-import './InputIVS.css';
+import './InputMarkowitz.css';
 
 
-class InputIVS extends React.Component{
+class InputMarkowitz extends React.Component{
 	
 	constructor(props){
 		super(props);
@@ -21,7 +21,7 @@ class InputIVS extends React.Component{
 			          <MDBCard>
 			            <MDBCardBody className = "IVSinput">
 			              <form>
-			                <p className="h4 text-center py-4">Choose parameters for Inverse Variance Strategy</p>
+			                <p className="h4 text-center py-4">Choose parameters for Markowitz Strategy</p>
 			                <div className="grey-text">
 			                  
 			                  <div className="input-group">
@@ -77,4 +77,4 @@ class InputIVS extends React.Component{
 
 }
 
-export default InputIVS;
+export default InputMarkowitz;

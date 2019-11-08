@@ -12,6 +12,7 @@ import Login from '../Login/Login';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Dashboard from '../Dashboard/Dashboard';
 import InputIVS from '../Strategies/IVS/InputIVS';
+import InputMarkowitz from '../Strategies/Markowitz/InputMarkowitz';
 import Logout from '../Logout/Logout';
 import './App.css';
 
@@ -48,6 +49,7 @@ class App extends React.Component{
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
             <PrivateRoute exact path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
             <PrivateRoute exact path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} component = {InputIVS} />
+            <PrivateRoute exact path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} component = {InputMarkowitz} />
             <Route exact path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
           </Switch>
         </Router>
