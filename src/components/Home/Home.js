@@ -24,7 +24,7 @@ const Home = () => {
 		      <td className="align-middle text-center" style = {bigHeadingStyle}>Beta Manager</td>
 		    </tr>
 		    <tr>
-		      <td className="align-middle text-center" style = {smallHeadingStyle}> One stop solution for financial protfolio visualization</td>
+		      <td className="align-middle text-center" style = {smallHeadingStyle}> One stop solution for financial portfolio visualization</td>
 		    </tr>
 		  </tbody>
 		</table>

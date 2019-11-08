@@ -9,8 +9,9 @@ import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import Dashboard from '../Dashboard/Dashboard';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import Dashboard from '../Dashboard/Dashboard';
+import InputIVS from '../Strategies/IVS/InputIVS';
 import Logout from '../Logout/Logout';
 import './App.css';
 
@@ -45,7 +46,8 @@ class App extends React.Component{
             <Route exact path = "/" component = {Home}/>
             <Route path = "/login" render = {(props) => <Login {...props} authenticateUser = {this.authenticateUser}/>}/>
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
-            <PrivateRoute path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
+            <PrivateRoute exact path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
+            <PrivateRoute exact path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} component = {InputIVS} />
             <Route exact path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
           </Switch>
         </Router>

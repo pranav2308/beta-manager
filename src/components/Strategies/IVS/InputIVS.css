@@ -1,0 +1,13 @@
+.card-body.IVSinput{
+	box-shadow: 0 0 3pt 2pt #72ae72;
+}
+
+.currencyInput{
+	width: 50%;
+	margin: 0 auto;
+}
+
+.capitalHeading{
+	margin-left: 10%;
+	margin-right: 10%;
+}
