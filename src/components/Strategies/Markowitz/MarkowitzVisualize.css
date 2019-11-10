@@ -1,0 +1,26 @@
+.ivs-content{
+	width: 60%;
+	height : auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.chart-style{
+	margin-top:  10%;
+	margin-bottom: 0%;
+	/*background-color: black;*/
+}
+
+.table-style{
+	font-size:  5em;
+}
+
+.table-heading-style{
+	color : #634940;
+	font-weight: italic !important;
+}
+
+.table-body-style{
+	color:  #dbd5d0;
+	font-weight: normal;
+}
