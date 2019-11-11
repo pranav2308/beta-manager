@@ -13,10 +13,7 @@ import Login from '../Login/Login';
 import AuthorizationProtectedRoute from '../PrivateRoutes/AuthorizationProtectedRoute';
 import Dashboard from '../Dashboard/Dashboard';
 import IVSRouting from '../Strategies/IVS/IVSRouting';
-
-
-import InputMarkowitz from '../Strategies/Markowitz/InputMarkowitz';
-import MarkowitzVisualize from '../Strategies/Markowitz/MarkowitzVisualize';
+import MarkowitzRouting from '../Strategies/Markowitz/MarkowitzRouting';
 import Logout from '../Logout/Logout';
 import './App.css';
 
@@ -53,7 +50,7 @@ class App extends React.Component{
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
             <AuthorizationProtectedRoute exact path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
             <AuthorizationProtectedRoute path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} component = {IVSRouting} />
-            <AuthorizationProtectedRoute exact path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} component = {MarkowitzVisualize} />
+            <AuthorizationProtectedRoute path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} component = {MarkowitzRouting} />
             <Route exact path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
           </Switch>
         </Router>

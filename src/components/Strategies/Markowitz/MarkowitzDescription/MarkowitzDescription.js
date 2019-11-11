@@ -3,10 +3,10 @@ import { MDBBtn, MDBIcon } from 'mdbreact';
 
 const onProceedButtonClick = (props) => {
 	const { url } = props.match;
-	props.history.push(url.concat('/InputIVS'));
+	props.history.push(url.concat('/InputMarkowitz'));
 }
 
-const IVSDecription = (props) => {
+const MarkowitzDescription = (props) => {
 	
 	const contentStyle = {
 		marginTop:  '10%'
@@ -35,10 +35,10 @@ const IVSDecription = (props) => {
 			<table style = {tableStyle}>
 			  <tbody>
 			    <tr>
-			      <td className="align-middle text-center" style = {bigHeadingStyle}>Inverse Variance Optimization Strategy</td>
+			      <td className="align-middle text-center" style = {bigHeadingStyle}>Markowitz Portfolio Optimization Strategy</td>
 			    </tr>
 			    <tr>
-			      <td className="align-middle text-center" style = {smallHeadingStyle}>[Short Description of IVS]</td>
+			      <td className="align-middle text-center" style = {smallHeadingStyle}>[Short Description of Markowitz Strategy]</td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -51,4 +51,4 @@ const IVSDecription = (props) => {
 }
 
 
-export default IVSDecription;
+export default MarkowitzDescription;
