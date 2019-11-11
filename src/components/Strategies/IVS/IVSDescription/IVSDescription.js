@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBBtn, MDBIcon } from 'mdbreact';
 
-const onProceedClick = (props) => {
+const onProceedButtonClick = (props) => {
 	const { url } = props.match;
 	console.log('Url from desc ', url)
 	props.history.push(url.concat('/InputIVS'));
@@ -43,7 +43,7 @@ const IVSDecription = (props) => {
 			    </tr>
 			  </tbody>
 			</table>
-			<MDBBtn color="deep-orange" style = {buttonStyle} onClick = { () => onProceedClick(props)}>
+			<MDBBtn color="deep-orange" style = {buttonStyle} onClick = { () => onProceedButtonClick(props)}>
         		 Proceed <MDBIcon icon="long-arrow-alt-right" className="ml-1" />
       		</MDBBtn>
 		</div>

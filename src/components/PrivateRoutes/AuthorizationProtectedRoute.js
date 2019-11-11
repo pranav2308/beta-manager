@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from 'react-router-dom';
 
 
-const PrivateRoute = (props) => {
+const AuthorizationProtectedRoute = (props) => {
 	
 	const { component : Component, userAuthenticated } = props;
 	
@@ -11,4 +11,4 @@ const PrivateRoute = (props) => {
 	}
 	return <Redirect to = "/login"/>
 }
-export default PrivateRoute;
+export default AuthorizationProtectedRoute;

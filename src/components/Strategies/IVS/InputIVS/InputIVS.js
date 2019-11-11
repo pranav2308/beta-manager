@@ -10,6 +10,13 @@ class InputIVS extends React.Component{
 		super(props);
 	}
 
+	onComputeButtonClick = () => {
+		const { url } = this.props.match;
+		const newUrl = url.split('/').slice(0, -1).join('/').concat('/IVSVisualize');
+		this.props.defineInputs();
+		this.props.history.push(newUrl);
+	}
+
 	render(){
 
 		
@@ -60,7 +67,7 @@ class InputIVS extends React.Component{
     						   </div>
 			                </div>
 			                <div className="text-center py-4 mt-3">
-			                  <MDBBtn color="light-green" type="button" rounded="true">
+			                  <MDBBtn color="light-green" type="button" rounded="true" onClick = {this.onComputeButtonClick}>
 			                    Compute   
 			                    <span style = {{marginLeft: '5px'}}><i className = "fas fa-brain"></i></span>
 			                  </MDBBtn>

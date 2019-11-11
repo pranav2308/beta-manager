@@ -10,11 +10,11 @@ import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import AuthorizationProtectedRoute from '../PrivateRoutes/AuthorizationProtectedRoute';
 import Dashboard from '../Dashboard/Dashboard';
 import IVSRouting from '../Strategies/IVS/IVSRouting';
 
-import IVSVisualize from '../Strategies/IVS/IVSVisualize';
+
 import InputMarkowitz from '../Strategies/Markowitz/InputMarkowitz';
 import MarkowitzVisualize from '../Strategies/Markowitz/MarkowitzVisualize';
 import Logout from '../Logout/Logout';
@@ -51,9 +51,9 @@ class App extends React.Component{
             <Route exact path = "/" component = {Home}/>
             <Route path = "/login" render = {(props) => <Login {...props} authenticateUser = {this.authenticateUser}/>}/>
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
-            <PrivateRoute exact path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
-            <PrivateRoute path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} component = {IVSRouting} />
-            <PrivateRoute exact path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} component = {MarkowitzVisualize} />
+            <AuthorizationProtectedRoute exact path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
+            <AuthorizationProtectedRoute path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} component = {IVSRouting} />
+            <AuthorizationProtectedRoute exact path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} component = {MarkowitzVisualize} />
             <Route exact path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
           </Switch>
         </Router>
