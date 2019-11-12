@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactLoading from 'react-loading';
-import './IVSProcessing.css';
+import './MarkowitzProcessing.css';
 
-const IVSProcessing = () => {
+const MarkowitzProcessing = () => {
 
 	const tableStyle = {
 		marginTop:  '25%',
@@ -21,7 +21,7 @@ const IVSProcessing = () => {
 			<table style = {tableStyle}>
 			  <tbody>
 			    <tr>
-			      <td className="align-middle text-center" style = {headingStyle}>Please wait while we compute optimal allocation Inverse variance Strategy</td>
+			      <td className="align-middle text-center" style = {headingStyle}>Please wait while we compute optimal allocation with Markowitz Strategy</td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -31,4 +31,4 @@ const IVSProcessing = () => {
 	);
 }
 
-export default IVSProcessing;
+export default MarkowitzProcessing;

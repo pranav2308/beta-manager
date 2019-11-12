@@ -4,6 +4,7 @@ import InputProtectedRoute from '../../PrivateRoutes/InputProtectedRoute';
 import MarkowitzDescription from './MarkowitzDescription/MarkowitzDescription';
 import InputMarkowitz from './InputMarkowitz/InputMarkowitz';
 import MarkowitzVisualize from './MarkowitzVisualize/MarkowitzVisualize';
+import MarkowitzProcessing from './MarkowitzProcessing/MarkowitzProcessing';
 
 class MarkowitzRouting extends React.Component{
 	
@@ -25,6 +26,7 @@ class MarkowitzRouting extends React.Component{
 			<Switch>
 				<Route exact path = {url} component = {MarkowitzDescription}/>
 				<Route path = {url.concat('/InputMarkowitz')} render = {(props) => <InputMarkowitz {...props} defineInputs = {this.defineInputs}/>}/>
+				<InputProtectedRoute path = {url.concat('/MarkowitzProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} component = {MarkowitzProcessing}/>
 				<InputProtectedRoute path = {url.concat('/MarkowitzVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} component = {MarkowitzVisualize}/>
 			</Switch>
 		);
