@@ -7,7 +7,7 @@ const AuthorizationProtectedRoute = (props) => {
 	const { component : Component, userAuthenticated } = props;
 	
 	if(userAuthenticated){
-		return <Route render = {() => <Component {...props}/>}/>
+		return <Route render = {(routeProps) => <Component {...routeProps} {...props}/>}/>
 	}
 	return <Redirect to = "/login"/>
 }

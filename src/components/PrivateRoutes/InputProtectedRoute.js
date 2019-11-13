@@ -5,7 +5,7 @@ const InputProtectedRoute = (props) => {
 
 	const { component : Component, inputsDefined, fallBackRoute } = props;
 	if(inputsDefined){
-		return <Route render = {() => <Component {...props}/>}/>
+		return <Route render = {(routeProps) => <Component {...routeProps} {...props}/>}/>
 	}
 	return <Redirect to = {fallBackRoute}/>
 }

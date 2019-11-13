@@ -24,3 +24,8 @@
 	color:  #dbd5d0;
 	font-weight: normal;
 }
+
+.visualize-routing.col{
+	text-align: center;
+	justify-content: center;
+}

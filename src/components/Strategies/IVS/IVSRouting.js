@@ -19,6 +19,13 @@ class IVSRouting extends React.Component{
 		this.setState({inputsDefined : true});
 	}
 
+	undefineInputs = () => {
+		if(this.state.inputsDefined){
+			this.setState({ inputsDefined : false });	
+		}
+		
+	}
+
 	render(){
 
 		const { url } = this.props.computedMatch;
@@ -27,7 +34,7 @@ class IVSRouting extends React.Component{
 				<Route exact path = {url} component = {IVSDescription}/>
 				<Route path = {url.concat('/InputIVS')} render = {(props) => <InputIVS {...props} defineInputs = {this.defineInputs}/>}/>
 				<InputProtectedRoute path = {url.concat('/IVSProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} component = {IVSProcessing}/>
-				<InputProtectedRoute path = {url.concat('/IVSVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} component = {IVSVisualize}/>
+				<InputProtectedRoute path = {url.concat('/IVSVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} undefineInputs = {this.undefineInputs} component = {IVSVisualize}/>
 			</Switch>
 		);
 	}

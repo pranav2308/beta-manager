@@ -1,5 +1,6 @@
 import React from 'react';
 import { VictoryChart, VictoryPie, VictoryTheme, VictoryContainer, VictoryLabel } from 'victory';
+import { MDBBtn } from 'mdbreact';
 import './IVSVisualize.css';
 
 
@@ -14,6 +15,10 @@ const smallHeadingStyle = {
 		fontSize : '250%'
 	}
 
+const buttonStyle = {
+	marginTop: '8%'
+}
+
 class IVSVisualize extends React.Component{
 	
 	constructor(props){
@@ -21,6 +26,7 @@ class IVSVisualize extends React.Component{
 		this.state = {
 			data : this.getDefaultData()
 		};
+		
 	}
 
 	getDefaultData = () => {
@@ -45,6 +51,18 @@ class IVSVisualize extends React.Component{
 		this.setState({data : data});	
 	}
 	
+	onReturnToDashboardButtonClick = () => {
+		this.props.undefineInputs();
+		this.props.history.push('/dashboard');
+	}
+
+	onTryAnotherInputButtonClick = () => {
+		this.props.undefineInputs();
+		const { url } = this.props.computedMatch;
+		const newUrl = url.split('/').slice(0, -1).join('/').concat('/InputIVS');
+		this.props.history.push(newUrl);	
+	}
+
 	componentDidMount(){
 		this.timeOutObj = window.setTimeout(this.updateData,0);
 	}
@@ -118,6 +136,32 @@ class IVSVisualize extends React.Component{
 					    	{tableContent}
 					    </tbody>
   					</table>
+				</div>
+				<div className = "container" style = {buttonStyle}>
+					<div className = "row justify-content-center">
+						<div className = "col visualize-routing">
+							
+							<MDBBtn
+		                      color="amber"
+		                      className="mb-3"
+		                      type="button"
+		                      onClick = {this.onReturnToDashboardButtonClick}
+		                    >
+		                      Return to Dashboard
+		                    </MDBBtn>
+
+						</div>
+						<div className = "col visualize-routing">
+							<MDBBtn
+		                      color="amber"
+		                      className="mb-3"
+		                      type="button"
+		                      onClick = {this.onTryAnotherInputButtonClick}
+		                    >
+		                      Try another input
+		                    </MDBBtn>
+						</div>
+					</div>
 				</div>
 			</div>
 		);	
