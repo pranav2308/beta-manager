@@ -22,9 +22,12 @@ class Navbar extends React.Component {
   render() {
 
     const { userAuthenticated } = this.props;
-    let navbarRenderContent;
+    let navbarRenderContent, logoRoute;
     
     if(userAuthenticated){
+      
+      logoRoute = '/dashboard';
+
       navbarRenderContent = 
         <MDBNavbarNav left>
           <MDBNavItem>
@@ -36,6 +39,9 @@ class Navbar extends React.Component {
         </MDBNavbarNav>;
     }
     else{
+
+      logoRoute = '/';
+
       navbarRenderContent = 
         <MDBNavbarNav left>
           <MDBNavItem>
@@ -54,7 +60,7 @@ class Navbar extends React.Component {
       <div>
         <header>
           <MDBNavbar color="bg-primary" fixed="top" dark expand="md" scrolling transparent>
-            <MDBNavbarBrand href="/">
+            <MDBNavbarBrand href={ logoRoute }>
               <strong>Beta Manager</strong>
             </MDBNavbarBrand>
             {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
