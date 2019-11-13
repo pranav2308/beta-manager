@@ -15,6 +15,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import IVSRouting from '../Strategies/IVS/IVSRouting';
 import MarkowitzRouting from '../Strategies/Markowitz/MarkowitzRouting';
 import Logout from '../Logout/Logout';
+import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
 class App extends React.Component{
@@ -52,6 +53,7 @@ class App extends React.Component{
             <AuthorizationProtectedRoute path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} component = {IVSRouting} />
             <AuthorizationProtectedRoute path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} component = {MarkowitzRouting} />
             <Route exact path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
+            <Route component = {PageNotFound}/>
           </Switch>
         </Router>
       </div>
