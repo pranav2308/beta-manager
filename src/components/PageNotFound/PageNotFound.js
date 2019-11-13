@@ -1,6 +1,12 @@
 import React from 'react';
+import { MDBBtn } from 'mdbreact';
 
-const PageNotFound = () => {
+
+const onReturnToDashboardButtonClick = (props) => {
+		props.history.push('/dashboard');
+	}
+
+const PageNotFound = (props) => {
 	
 	const tableStyle = {
 		height : '300px',
@@ -21,6 +27,10 @@ const PageNotFound = () => {
 		fontSize : '150%'
 	}
 
+	const buttonStyle = {
+		marginTop: '15%'
+	}
+
 	return (
 
 		<table style = {tableStyle}>
@@ -30,6 +40,19 @@ const PageNotFound = () => {
 		    </tr>
 		    <tr>
 		      <td className="align-middle text-center" style = {smallHeadingStyle}>There is nothing to see here. Stop fooling around and get back to portfolio visualization.</td>
+		    </tr>
+		    <tr>
+		      <td 
+		      	className="align-middle text-center"
+		      	style = {buttonStyle}>
+		      		<MDBBtn
+                      color="dark-green"
+                      className="mb-3"
+                      type="button"
+                      onClick = {() => {onReturnToDashboardButtonClick(props)}}>
+		                Return to Dashboard
+		            </MDBBtn>
+		      </td>
 		    </tr>
 		  </tbody>
 		</table>
