@@ -19,6 +19,13 @@ class MarkowitzRouting extends React.Component{
 		this.setState({inputsDefined : true});
 	}
 
+	undefineInputs = () => {
+		if(this.state.inputsDefined){
+			this.setState({ inputsDefined : false });	
+		}
+		
+	}
+	
 	render(){
 
 		const { url } = this.props.computedMatch;
@@ -27,7 +34,7 @@ class MarkowitzRouting extends React.Component{
 				<Route exact path = {url} component = {MarkowitzDescription}/>
 				<Route path = {url.concat('/InputMarkowitz')} render = {(props) => <InputMarkowitz {...props} defineInputs = {this.defineInputs}/>}/>
 				<InputProtectedRoute path = {url.concat('/MarkowitzProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} component = {MarkowitzProcessing}/>
-				<InputProtectedRoute path = {url.concat('/MarkowitzVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} component = {MarkowitzVisualize}/>
+				<InputProtectedRoute path = {url.concat('/MarkowitzVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} undefineInputs = {this.undefineInputs} component = {MarkowitzVisualize}/>
 			</Switch>
 		);
 	}
