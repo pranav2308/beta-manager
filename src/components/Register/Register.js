@@ -1,5 +1,7 @@
 import React from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBModalFooter, MDBIcon, MDBCardHeader, MDBBtn, MDBInput } from "mdbreact";
+import { CountryDropdown } from 'react-country-region-selector';
+import './Register.css'; 
 
 const loginLinkStyle = {
     color : '#7f7bff',
@@ -13,6 +15,13 @@ class Registration extends React.Component{
   
   constructor(props){
     super(props);
+    this.state = {
+      country : 'United States'
+    }
+  }
+
+  onSelectCountry = (country) => {
+    this.setState({country : country});
   }
 
   onRegisterButtonClick = () => {
@@ -74,6 +83,15 @@ class Registration extends React.Component{
                       />
                     </div>
 
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                          <i className = "fas fa-map-marker-alt fa-2x grey-text"></i>
+                          <span className = "text-center grey-text country-heading">
+                              Country
+                          </span>
+                      </div>
+                          <CountryDropdown defaultOptionLabel = "United States" className = "country-dropdown" value = {this.state.country} onChange = {(country) => this.onSelectCountry(country)}/>
+                   </div>
                   <div className="text-center mt-4">
                     <MDBBtn
                       color="deep-orange"
