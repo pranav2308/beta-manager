@@ -12,11 +12,68 @@ class Login extends React.Component{
 
   constructor(props){
     super(props);
+    this.state = {
+      email: '',
+      password : ''
+    }
+  }
+
+  onEmailChange = (event) => {
+    this.setState({email : event.target.value});
+  }
+
+  onPasswordChange = (event) => {
+    this.setState({password : event.target.value});
   }
 
   onLoginButtonClick = () => {
-    this.props.authenticateUser();
-    this.props.history.push('/dashboard');
+
+    const{ email, password } = this.state;
+
+    fetch('http://localhost:3000/login', {
+      method: 'post',
+      headers : {'Content-Type' : 'application/json'},
+      body : JSON.stringify({
+        email : email,
+        password : password
+      })
+    })
+    .then(response => {
+      
+      if(response.status === 200){
+        return response.json();  
+      }
+      else if(response.status === 401){
+        alert('Invalid credentials! Please try again.')
+        return null;
+      }
+      else{
+        //if rsposne.status === 500
+        alert('Oops! Something went wrong on our server. Try loggin-in another time.')
+        return null
+      }
+    })
+    .then(userObjResponse => {
+      if(userObjResponse){
+        
+        const { full_name : fullName, email, country, n_ivs : nIVS, n_markowitz : nMarkowitz, join_date : joinDate} = userObjResponse;
+        
+        const user = {
+          fullName : fullName,
+          email : email,
+          country : country,
+          nIVS : nIVS,
+          nMarkowitz : nMarkowitz,
+          joinDate : joinDate
+        }
+
+        this.props.authenticateUser(user);
+        this.props.history.push('/dashboard');
+      }
+    })
+    .catch(error => {
+     alert('Oops! It seems that you are disconnected. Please check your internet connection and try to registering again.')
+     });
   }
 
   onRegisterLinkClick = () =>{
@@ -46,12 +103,14 @@ class Login extends React.Component{
                         validate
                         error="wrong"
                         success="right"
+                        onChange = {this.onEmailChange}
                       />
                       <MDBInput
                         label="Type your password"
                         icon="lock"
                         group
                         type="password"
+                        onChange = {this.onPasswordChange}
                         validate
                       />
                     </div>
