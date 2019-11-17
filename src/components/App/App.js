@@ -18,25 +18,37 @@ import Logout from '../Logout/Logout';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
+const emptyUser = {
+  userID : '',
+  fullName : '',
+  email : '',
+  country : '',
+  joinDate : '',
+  nIVS : '',
+  nMarkowitz: ''  
+}
+
+
 class App extends React.Component{
 
   constructor(props){
     
     super(props);
     this.state = {
-      userAuthenticated : false
+      userAuthenticated : false,
+      user : emptyUser
     }
   }
 
-  authenticateUser = () => {
+  authenticateUser = (user) => {
     if(!this.state.userAuthenticated){
-      this.setState({ userAuthenticated : true });  
+      this.setState({ userAuthenticated : true, user: user });  
     }
   }
 
   flushUser = () => {
     if(this.state.userAuthenticated){
-      this.setState({ userAuthenticated : false });  
+      this.setState({ userAuthenticated : false, user: emptyUser });  
     }
   }
 
@@ -49,7 +61,7 @@ class App extends React.Component{
             <Route exact path = "/" component = {Home}/>
             <Route path = "/login" render = {(props) => <Login {...props} authenticateUser = {this.authenticateUser}/>}/>
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
-            <AuthorizationProtectedRoute exact path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} component = {Dashboard} />
+            <AuthorizationProtectedRoute exact path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} user = {this.state.user} component = {Dashboard} />
             <AuthorizationProtectedRoute path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} component = {IVSRouting} />
             <AuthorizationProtectedRoute path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} component = {MarkowitzRouting} />
             <Route exact path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>

@@ -16,8 +16,28 @@ class Registration extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      fullName : '',
+      email : '',
+      password: '',
+      confirmPassword : '',
       country : 'United States'
     }
+  }
+
+  onFullNameChange = (event) => {
+    this.setState({fullName : event.target.value});
+  }
+
+  onEmailChange = (event) => {
+    this.setState({email : event.target.value});
+  }
+
+  onPasswordChange = (event) => {
+    this.setState({password : event.target.value});
+  }
+
+  onConfirmPasswordChange = (event) => {
+    this.setState({confirmPassword : event.target.value});
   }
 
   onSelectCountry = (country) => {
@@ -25,8 +45,55 @@ class Registration extends React.Component{
   }
 
   onRegisterButtonClick = () => {
-    this.props.authenticateUser();
-    this.props.history.push('/dashboard');
+    
+    const { fullName, email, password, country } = this.state;
+
+    fetch('http://localhost:3000/register', {
+      method: 'post',
+      headers : {'Content-Type' : 'application/json'},
+      body : JSON.stringify({
+        fullName : fullName,
+        email : email,
+        password : password,
+        country : country
+      })
+    })
+    .then(response => {
+      
+      if(response.status === 200){
+        return response.json();  
+      }
+      else if(response.status === 409){
+        alert('User with given email already exists! Try logging-in or register with different email')
+        return null;
+      }
+      else{
+        //if rsposne.status === 500
+        alert('Oops! Something went wrong on our server. Try registering another time.')
+        return null
+      }
+    })
+    .then(userObjResponse => {
+      if(userObjResponse){
+        
+        const { full_name : fullName, email, country, n_ivs : nIVS, n_markowitz : nMarkowitz, join_date : joinDate} = userObjResponse;
+        
+        const user = {
+          fullName : fullName,
+          email : email,
+          country : country,
+          nIVS : nIVS,
+          nMarkowitz : nMarkowitz,
+          joinDate : joinDate
+        }
+
+        this.props.authenticateUser(user);
+        this.props.history.push('/dashboard');
+      }
+    })
+    .catch(error => {
+      alert('Oops! It seems that you are disconnected. Please check your internet connection and try to registering again.')
+    })
   }
 
   onLoginLinkClick = () =>{
@@ -34,7 +101,7 @@ class Registration extends React.Component{
   }
 
   render(){
-    
+    const { fullName, email, password, confirmPassword } = this.state;
     return(
       <div className = "authentication">
         <MDBContainer>
@@ -51,34 +118,42 @@ class Registration extends React.Component{
                     <div className="grey-text">
                       <MDBInput
                         label="Type your full name"
+                        value = {fullName}
                         icon="address-book"
                         group
                         type="email"
                         validate
                         error="wrong"
                         success="right"
+                        onChange = {this.onFullNameChange}
                       />
                       <MDBInput
                         label="Type your email"
+                        value = {email}
                         icon="envelope"
                         group
                         type="email"
                         validate
                         error="wrong"
                         success="right"
+                        onChange = {this.onEmailChange}
                       />
                       <MDBInput
                         label="Type your password"
+                        value = {password}
                         icon="lock"
                         group
                         type="password"
+                        onChange = {this.onPasswordChange}
                         validate
                       />
                       <MDBInput
                         label="Confirm your password"
+                        value = {confirmPassword}
                         icon="exclamation-triangle"
                         group
                         type="password"
+                        onChange = {this.onConfirmPasswordChange}
                         validate
                       />
                     </div>

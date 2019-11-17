@@ -21,7 +21,7 @@ const Dashboard = (props) => {
 		<table style = {tableStyle}>
 		  <tbody>
 		    <tr>
-		      <td className="align-middle text-center" style = {smallHeadingStyle}>{`Welcome [userName]! Please choose the allocation strategy from below:`}</td>
+		      <td className="align-middle text-center" style = {smallHeadingStyle}>{`Welcome ${props.user.fullName}! Please choose the allocation strategy from below:`}</td>
 		    </tr>
 		    <tr>
 		      <td className="align-middle text-center" style = {smallHeadingStyle}>
