@@ -73,6 +73,8 @@ class IVSVisualize extends React.Component{
 
 
 	render(){
+		
+		console.log(this.props);
 
 		const data = [
 			{ticker : 'AAPL', allocation : 35},
