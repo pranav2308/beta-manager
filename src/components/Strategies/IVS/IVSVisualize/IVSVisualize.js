@@ -52,12 +52,12 @@ class IVSVisualize extends React.Component{
 	}
 	
 	onReturnToDashboardButtonClick = () => {
-		this.props.undefineInputs();
+		this.props.flushInputAndAllocation();
 		this.props.history.push('/dashboard');
 	}
 
 	onTryAnotherInputButtonClick = () => {
-		this.props.undefineInputs();
+		this.props.flushInputAndAllocation();
 		const { url } = this.props.computedMatch;
 		const newUrl = url.split('/').slice(0, -1).join('/').concat('/InputIVS');
 		this.props.history.push(newUrl);	
@@ -74,7 +74,7 @@ class IVSVisualize extends React.Component{
 
 	render(){
 		
-		console.log(this.props);
+		console.log(this.props.allocation);
 
 		const data = [
 			{ticker : 'AAPL', allocation : 35},

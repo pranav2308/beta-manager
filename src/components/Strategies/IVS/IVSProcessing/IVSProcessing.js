@@ -39,7 +39,7 @@ const IVSProcessing = (props) => {
 			<table style = {tableStyle}>
 			  <tbody>
 			    <tr>
-			      <td className="align-middle text-center" style = {headingStyle}>Please wait while we compute optimal allocation Inverse variance Strategy</td>
+			      <td className="align-middle text-center" style = {headingStyle}>Please wait while we compute optimal allocation via Inverse variance Strategy</td>
 			    </tr>
 			  </tbody>
 			</table>
