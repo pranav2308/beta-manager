@@ -24,20 +24,41 @@ class IVSVisualize extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			data : this.getDefaultData()
+			visulizationData : this.getDummyData(this.props.allocation)
 		};
 		
 	}
 
-	getDefaultData = () => {
-		
-		return [
-			{ticker : 'AAPL', allocation : 0},
-			{ticker : 'AVP', allocation : 100},
-			{ticker : 'MRO', allocation : 0},
-			{ticker : 'PACD', allocation : 0},
-			{ticker : 'TSLA', allocation : 0}
-		];
+	getMinAllocatedStock = (allocation) => {
+		let minAllocation = 100;
+		let minAllocatedStock = {};
+		allocation.forEach((allocationObj) => {
+			if(allocationObj.allocation < minAllocation){
+				minAllocation = allocationObj.allocation;
+				minAllocatedStock = allocationObj;
+			}
+		});
+		return minAllocatedStock;
+	}
+
+	getDummyData = (allocation) => {
+		const minAllocatedStockTicker = this.getMinAllocatedStock(allocation).ticker;
+		const dummyData = allocation.map((allocationObj) => {
+			if(allocationObj.ticker === minAllocatedStockTicker){
+				return {ticker : minAllocatedStockTicker, allocation : 100};
+			}
+			return {ticker : allocationObj.ticker, allocation : 0};
+		});
+
+		//console.log('dummyData: ', dummyData);
+		// return [
+		// 	{ticker : 'AAPL', allocation : 0},
+		// 	{ticker : 'AVP', allocation : 100},
+		// 	{ticker : 'MRO', allocation : 0},
+		// 	{ticker : 'PACD', allocation : 0},
+		// 	{ticker : 'TSLA', allocation : 0}
+		// ];
+		return dummyData;
 
 	}
 	updateData = () => {
@@ -48,7 +69,7 @@ class IVSVisualize extends React.Component{
 			{ticker : 'PACD', allocation : 15},
 			{ticker : 'TSLA', allocation : 25}
 		]	
-		this.setState({data : data});	
+		this.setState({visulizationData : this.props.allocation});	
 	}
 	
 	onReturnToDashboardButtonClick = () => {
@@ -108,7 +129,7 @@ class IVSVisualize extends React.Component{
 					  </tbody>
 					</table>
 
-					<VictoryPie data = {this.state.data} 
+					<VictoryPie data = {this.state.visulizationData} 
 						x = "ticker" 
 						y = "allocation"
 						startAngle={90}
