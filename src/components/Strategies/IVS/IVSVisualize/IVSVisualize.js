@@ -42,6 +42,7 @@ class IVSVisualize extends React.Component{
 	}
 
 	getDummyData = (allocation) => {
+
 		const minAllocatedStockTicker = this.getMinAllocatedStock(allocation).ticker;
 		const dummyData = allocation.map((allocationObj) => {
 			if(allocationObj.ticker === minAllocatedStockTicker){
@@ -49,26 +50,10 @@ class IVSVisualize extends React.Component{
 			}
 			return {ticker : allocationObj.ticker, allocation : 0};
 		});
-
-		//console.log('dummyData: ', dummyData);
-		// return [
-		// 	{ticker : 'AAPL', allocation : 0},
-		// 	{ticker : 'AVP', allocation : 100},
-		// 	{ticker : 'MRO', allocation : 0},
-		// 	{ticker : 'PACD', allocation : 0},
-		// 	{ticker : 'TSLA', allocation : 0}
-		// ];
 		return dummyData;
 
 	}
 	updateData = () => {
-		const data = [
-			{ticker : 'AAPL', allocation : 35},
-			{ticker : 'AVP', allocation : 5},
-			{ticker : 'MRO', allocation : 20},
-			{ticker : 'PACD', allocation : 15},
-			{ticker : 'TSLA', allocation : 25}
-		]	
 		this.setState({visulizationData : this.props.allocation});	
 	}
 	
@@ -94,24 +79,16 @@ class IVSVisualize extends React.Component{
 
 
 	render(){
-		
-		console.log(this.props.allocation);
 
-		const data = [
-			{ticker : 'AAPL', allocation : 35},
-			{ticker : 'AVP', allocation : 5},
-			{ticker : 'MRO', allocation : 20},
-			{ticker : 'PACD', allocation : 15},
-			{ticker : 'TSLA', allocation : 25}
-		]
+		const { allocation : tableData, capital } = this.props;
 
-		const tableContent = data.map( (elem, index) => {
+		const tableContent = tableData.map( (elem, index) => {
 			return (
 					<tr>
 				      <th scope="row">{index + 1}</th>
 				      <td>{elem.ticker}</td>
-				      <td>{elem.allocation}</td>
-				      <td>{100}</td>
+				      <td>{elem.allocation.toFixed(2)}</td>
+				      <td>{(elem.allocation * capital / 100).toFixed(2)}</td>
 				    </tr>
 				);
 		});

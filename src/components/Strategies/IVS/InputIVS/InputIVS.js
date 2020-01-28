@@ -63,13 +63,13 @@ class InputIVS extends React.Component{
 	    })
 	    .then(response => {
 	    	if(response === 'invalid'){
-	    		collectAllocation('invalid', '');
+	    		collectAllocation('invalid', 'NotDefined', 'NotDefined');
 	    	}
 	    	else if(response === 'error'){
-	    		collectAllocation('error', '');
+	    		collectAllocation('error', 'NotDefined', 'NotDefined');
 	    	}
 	    	else{
-	    		collectAllocation('valid', response);
+	    		collectAllocation('valid', response, capital);
 	    	}
 	    })
 	    .catch(console.log);
@@ -141,7 +141,7 @@ class InputIVS extends React.Component{
 					            		</span>
 	      							</div>
       								
-					                <CurrencyInput prefix="$" value = {capital} decimalSeparator="." thousandSeparator="," precision="2" className = "currencyInput" onChangeEvent = {this.onCapitalChange}/>
+					                <CurrencyInput prefix="$" value = {capital} decimalSeparator="." thousandSeparator="," precision="0" className = "currencyInput" onChangeEvent = {this.onCapitalChange}/>
     						   </div>
 			                </div>
 			                <div className="text-center py-4 mt-3">

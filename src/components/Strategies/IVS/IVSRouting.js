@@ -6,27 +6,30 @@ import InputIVS from './InputIVS/InputIVS';
 import IVSVisualize from './IVSVisualize/IVSVisualize';
 import IVSProcessing from './IVSProcessing/IVSProcessing';
 
+const defaultState = {
+	inputsDefined : false,
+	allocationStatus : 'NotDefined',
+	allocation : 'NotDefined',
+	capital : 'NotDefined'
+}
+
 class IVSRouting extends React.Component{
 	
 	constructor(props){
 		super(props);
-		this.state = {
-			inputsDefined : false,
-			allocationStatus : 'NotDefined', 
-			allocation : 'NotDefined'
-		}
+		this.state = defaultState
 	}
 
 	defineInputs = () => {
 		this.setState({inputsDefined : true});
 	}
 
-	collectAllocation = (allocationStatus, allocation) =>{
-		this.setState({allocationStatus: allocationStatus, allocation : allocation});
+	collectAllocation = (allocationStatus, allocation, capital) =>{
+		this.setState({allocationStatus : allocationStatus, allocation : allocation, capital : capital});
 	}
 
 	flushInputAndAllocation = () => {
-		this.setState({inputsDefined : false, allocationStatus : 'NotDefined', allocation : 'NotDefined'});	
+		this.setState(defaultState);	
 	}
 
 	render(){
@@ -37,7 +40,7 @@ class IVSRouting extends React.Component{
 				<Route exact path = {url} component = {IVSDescription}/>
 				<Route path = {url.concat('/InputIVS')} render = {(props) => <InputIVS {...props} {...this.props} defineInputs = {this.defineInputs} collectAllocation = {this.collectAllocation}/>}/>
 				<InputProtectedRoute path = {url.concat('/IVSProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} allocationStatus = {this.state.allocationStatus} component = {IVSProcessing}/>
-				<InputProtectedRoute path = {url.concat('/IVSVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} flushInputAndAllocation = {this.flushInputAndAllocation} allocation = {this.state.allocation} component = {IVSVisualize}/>
+				<InputProtectedRoute path = {url.concat('/IVSVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} flushInputAndAllocation = {this.flushInputAndAllocation} allocation = {this.state.allocation} capital = {this.state.capital} component = {IVSVisualize}/>
 			</Switch>
 		);
 	}
