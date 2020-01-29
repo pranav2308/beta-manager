@@ -19,10 +19,61 @@ class InputMarkowitz extends React.Component{
 		
 		this.props.defineInputs();
 
-		const { url } = this.props.match;
-		const newUrl = url.split('/').slice(0, -1).join('/').concat('/MarkowitzVisualize');
-		
+		//process input
+		const upperCaseList = this.state.tickerList.toUpperCase();
+		const commaSepTickerList = upperCaseList.split(' ').join('');
+		this.setState( { tickerList: commaSepTickerList });
+
+
+		//call processing page till the result arrives.
+
+		const url  = this.props.location.pathname;
+		const newUrl = url.split('/').slice(0, -1).join('/').concat('/MarkowitzProcessing');
 		this.props.history.push(newUrl);
+		
+		const { windowLength, capital } = this.state;
+		const { email } = this.props.user;
+		const { collectAllocation } = this.props;
+
+		fetch('http://localhost:3000/Markowitz', {
+	      method: 'post',
+	      headers : {'Content-Type' : 'application/json'},
+	      body : JSON.stringify({
+	        email : email,
+	        tickerList : commaSepTickerList,
+	        windowLength : windowLength,
+	        capital : capital
+	      })
+	    })
+	    .then(responseHeader => {
+      
+	      if(responseHeader.status === 200){
+	        return responseHeader.json();  
+	      }
+	      else if(responseHeader.status === 406){
+	       // alert('Invalid inputs! Please try again.')
+	        return 'invalid';
+	      }
+	      else{
+	        //if rsposne.status === 500
+	        //alert('Oops! Something went wrong on our server. Try loggin-in another time.');
+	        return 'error'
+	      }
+	    })
+	    .then(response => {
+	    	if(response === 'invalid'){
+	    		collectAllocation('invalid', 'NotDefined', 'NotDefined');
+	    	}
+	    	else if(response === 'error'){
+	    		collectAllocation('error', 'NotDefined', 'NotDefined');
+	    	}
+	    	else{
+	    		collectAllocation('valid', response, capital);
+	    	}
+	    })
+	    .catch(console.log);
+		
+		
 	}
 
 

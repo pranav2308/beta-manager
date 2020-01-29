@@ -23,39 +23,46 @@ class MarkowitzVisualize extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			data : this.getDefaultData()
+			visulizationData : this.getDummyData(this.props.allocation)
 		};
 	}
 
-	getDefaultData = () => {
-		
-		return [
-			{ticker : 'AAPL', allocation : 0},
-			{ticker : 'AVP', allocation : 100},
-			{ticker : 'MRO', allocation : 0},
-			{ticker : 'PACD', allocation : 0},
-			{ticker : 'TSLA', allocation : 0}
-		];
+
+	getMinAllocatedStock = (allocation) => {
+		let minAllocation = 100;
+		let minAllocatedStock = {};
+		allocation.forEach((allocationObj) => {
+			if(allocationObj.allocation < minAllocation){
+				minAllocation = allocationObj.allocation;
+				minAllocatedStock = allocationObj;
+			}
+		});
+		return minAllocatedStock;
+	}
+
+	getDummyData = (allocation) => {
+
+		const minAllocatedStockTicker = this.getMinAllocatedStock(allocation).ticker;
+		const dummyData = allocation.map((allocationObj) => {
+			if(allocationObj.ticker === minAllocatedStockTicker){
+				return {ticker : minAllocatedStockTicker, allocation : 100};
+			}
+			return {ticker : allocationObj.ticker, allocation : 0};
+		});
+		return dummyData;
 
 	}
-	updateData = () => {
-		const data = [
-			{ticker : 'AAPL', allocation : 35},
-			{ticker : 'AVP', allocation : 5},
-			{ticker : 'MRO', allocation : 20},
-			{ticker : 'PACD', allocation : 15},
-			{ticker : 'TSLA', allocation : 25}
-		]	
-		this.setState({data : data});	
+	updateData = () => {	
+		this.setState({visulizationData : this.props.allocation});	
 	}
 	
 	onReturnToDashboardButtonClick = () => {
-		this.props.undefineInputs();
+		this.props.flushInputAndAllocation();
 		this.props.history.push('/dashboard');
 	}
 
 	onTryAnotherInputButtonClick = () => {
-		this.props.undefineInputs();
+		this.props.flushInputAndAllocation();
 		const { url } = this.props.computedMatch;
 		const newUrl = url.split('/').slice(0, -1).join('/').concat('/InputMarkowitz');
 		this.props.history.push(newUrl);	
@@ -72,21 +79,15 @@ class MarkowitzVisualize extends React.Component{
 
 	render(){
 
-		const data = [
-			{ticker : 'AAPL', allocation : 35},
-			{ticker : 'AVP', allocation : 5},
-			{ticker : 'MRO', allocation : 20},
-			{ticker : 'PACD', allocation : 15},
-			{ticker : 'TSLA', allocation : 25}
-		]
+		const { allocation : tableData, capital } = this.props;
 
-		const tableContent = data.map( (elem, index) => {
+		const tableContent = tableData.map( (elem, index) => {
 			return (
 					<tr>
 				      <th scope="row">{index + 1}</th>
 				      <td>{elem.ticker}</td>
-				      <td>{elem.allocation}</td>
-				      <td>{100}</td>
+				      <td>{elem.allocation.toFixed(2)}</td>
+				      <td>{(elem.allocation * capital / 100).toFixed(2)}</td>
 				    </tr>
 				);
 		});
@@ -104,7 +105,7 @@ class MarkowitzVisualize extends React.Component{
 					  </tbody>
 					</table>
 
-					<VictoryPie data = {this.state.data} 
+					<VictoryPie data = {this.state.visulizationData} 
 						x = "ticker" 
 						y = "allocation"
 						startAngle={90}

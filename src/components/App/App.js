@@ -62,8 +62,8 @@ class App extends React.Component{
             <Route path = "/login" render = {(props) => <Login {...props} authenticateUser = {this.authenticateUser}/>}/>
             <Route path = "/register" render = {(props) => <Register {...props} authenticateUser = {this.authenticateUser}/>}/>
             <AuthorizationProtectedRoute exact path = "/dashboard" userAuthenticated = {this.state.userAuthenticated} user = {this.state.user} component = {Dashboard} />
-            <AuthorizationProtectedRoute path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} component = {IVSRouting} user = {this.state.user}/>
-            <AuthorizationProtectedRoute path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} component = {MarkowitzRouting} />
+            <AuthorizationProtectedRoute path = "/dashboard/IVS" userAuthenticated = {this.state.userAuthenticated} user = {this.state.user} component = {IVSRouting} />
+            <AuthorizationProtectedRoute path = "/dashboard/Markowitz" userAuthenticated = {this.state.userAuthenticated} user = {this.state.user} component = {MarkowitzRouting} />
             <Route exact path = "/logout" render = {(props) => <Logout {...props} flushUser = {this.flushUser} component = {Home}/>}/>
             <Route component = {PageNotFound}/>
           </Switch>

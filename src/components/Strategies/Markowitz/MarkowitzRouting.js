@@ -6,24 +6,33 @@ import InputMarkowitz from './InputMarkowitz/InputMarkowitz';
 import MarkowitzVisualize from './MarkowitzVisualize/MarkowitzVisualize';
 import MarkowitzProcessing from './MarkowitzProcessing/MarkowitzProcessing';
 
+const defaultState = {
+	inputsDefined : false,
+	allocationStatus : 'NotDefined',
+	allocation : 'NotDefined',
+	capital : 'NotDefined'
+}
+
+
 class MarkowitzRouting extends React.Component{
 	
 	constructor(props){
 		super(props);
-		this.state = {
-			inputsDefined : false
-		}
+		this.state  = defaultState;
 	}
+
+
 
 	defineInputs = () => {
 		this.setState({inputsDefined : true});
 	}
 
-	undefineInputs = () => {
-		if(this.state.inputsDefined){
-			this.setState({ inputsDefined : false });	
-		}
-		
+	collectAllocation = (allocationStatus, allocation, capital) =>{
+		this.setState({allocationStatus : allocationStatus, allocation : allocation, capital : capital});
+	}
+
+	flushInputAndAllocation = () => {
+		this.setState(defaultState);	
 	}
 	
 	render(){
@@ -32,9 +41,9 @@ class MarkowitzRouting extends React.Component{
 		return(
 			<Switch>
 				<Route exact path = {url} component = {MarkowitzDescription}/>
-				<Route path = {url.concat('/InputMarkowitz')} render = {(props) => <InputMarkowitz {...props} defineInputs = {this.defineInputs}/>}/>
-				<InputProtectedRoute path = {url.concat('/MarkowitzProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} component = {MarkowitzProcessing}/>
-				<InputProtectedRoute path = {url.concat('/MarkowitzVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} undefineInputs = {this.undefineInputs} component = {MarkowitzVisualize}/>
+				<Route path = {url.concat('/InputMarkowitz')} render = {(props) => <InputMarkowitz {...props} {...this.props} defineInputs = {this.defineInputs} collectAllocation = {this.collectAllocation}/>}/>
+				<InputProtectedRoute path = {url.concat('/MarkowitzProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} allocationStatus = {this.state.allocationStatus} component = {MarkowitzProcessing}/>
+				<InputProtectedRoute path = {url.concat('/MarkowitzVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} flushInputAndAllocation = {this.flushInputAndAllocation} allocation = {this.state.allocation} capital = {this.state.capital} component = {MarkowitzVisualize}/>
 			</Switch>
 		);
 	}
