@@ -6,19 +6,42 @@ import './InputMarkowitz.css';
 
 class InputMarkowitz extends React.Component{
 	
-	constructor(props){
-		super(props);
+	constructor(){
+		super();
+		this.state = {
+			tickerList : '',
+			windowLength : 0,
+			capital: 0
+		}
 	}
 
 	onComputeButtonClick = () => {
+		
+		this.props.defineInputs();
+
 		const { url } = this.props.match;
 		const newUrl = url.split('/').slice(0, -1).join('/').concat('/MarkowitzVisualize');
-		this.props.defineInputs();
+		
 		this.props.history.push(newUrl);
 	}
 
+
+	onTickerListChange = (event) => {
+		this.setState({ tickerList : event.target.value});
+	}
+
+	onWindowLengthChange = (event) => {
+		this.setState( {windowLength : event.target.value});
+	}
+
+	onCapitalChange = (event, maskedValue, floatValue) => {
+		this.setState({ capital : floatValue});
+	}
+
+
 	render(){
 
+		const {tickerList, windowLength, capital } = this.state;
 		
 		return(
 			<div className = "inputcard">
@@ -42,7 +65,9 @@ class InputMarkowitz extends React.Component{
       								className="form-control" 
       								placeholder="Comma seprated ticker list" 
       								aria-label="list" 
-      								aria-describedby="basic-addon" />
+      								aria-describedby="basic-addon"
+      								value = {tickerList}
+      								onChange = {this.onTickerListChange} />
     						   </div>
 
 			                  <MDBInput
@@ -53,6 +78,8 @@ class InputMarkowitz extends React.Component{
 			                    validate
 			                    error="wrong"
 			                    success="right"
+			                    value = {windowLength}
+			                    onChange = {this.onWindowLengthChange}
 			                  />
 
 			                   <div className="input-group">
@@ -63,7 +90,7 @@ class InputMarkowitz extends React.Component{
 					            		</span>
 	      							</div>
       								
-					                <CurrencyInput prefix="$" value = {0.00} decimalSeparator="." thousandSeparator="," precision="2" className = "currencyInput"/>
+					                <CurrencyInput prefix="$" value = {capital} decimalSeparator="." thousandSeparator="," precision="2" className = "currencyInput" onChangeEvent = {this.onCapitalChange}/>
     						   </div>
 			                </div>
 			                <div className="text-center py-4 mt-3">
