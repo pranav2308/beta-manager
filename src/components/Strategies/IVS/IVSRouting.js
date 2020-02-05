@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import {InputProtectedRoute} from '../Utils';
-import IVSDescription from './IVSDescription/IVSDescription';
-import InputIVS from './InputIVS/InputIVS';
-import IVSVisualize from './IVSVisualize/IVSVisualize';
-import IVSProcessing from './IVSProcessing/IVSProcessing';
+import IVSDescription from './IVSDescription';
+import InputIVS from './InputIVS';
+import IVSVisualize from './IVSVisualize';
+import IVSProcessing from './IVSProcessing';
 
 const defaultState = {
 	inputsDefined : false,

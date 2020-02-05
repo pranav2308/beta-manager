@@ -11,4 +11,23 @@ function InputProtectedRoute(props){
 	return <Redirect to = {fallBackRoute}/>
 }
 
-export { InputProtectedRoute };
+function redirectProcessing(allocationStatus, url, strategy){
+
+	if(allocationStatus === 'valid'){
+		const newUrl = url.split('/').slice(0, -1).join('/').concat('/', strategy,'Visualize');
+		return <Redirect to = {newUrl}/>
+	}
+	else if(allocationStatus === 'invalid'){
+		alert('Invalid inputs! Please try again.');
+		const newUrl = url.split('/').slice(0, -1).join('/').concat('/Input', strategy);
+		return <Redirect to = {newUrl}/>
+	}
+	else if(allocationStatus === 'error'){
+		alert('Oops! Something went wrong on our server. Try loggin-in another time.');
+		const newUrl = url.split('/').slice(0, -1).join('/').concat('/Input', strategy);
+		return <Redirect to = {newUrl}/>
+	}
+
+}
+
+export { InputProtectedRoute, redirectProcessing };
