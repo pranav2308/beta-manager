@@ -6,8 +6,8 @@ import '../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 import '../../../node_modules/bootstrap-css-only/css/bootstrap.min.css';
 import '../../../node_modules/mdbreact/dist/css/mdb.css';
 
-import Navbar from '../Navbar/Navbar';
-import Home from '../Home/Home';
+import Navbar from '../Navbar';
+import Home from '../Home';
 //import Register from '../Register/Register';
 
 import { Login, Register } from '../Authentication';

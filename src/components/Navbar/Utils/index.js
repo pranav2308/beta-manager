@@ -1,0 +1,1 @@
+export { onClick } from './OnClicks';

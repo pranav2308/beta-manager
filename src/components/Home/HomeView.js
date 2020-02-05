@@ -1,23 +1,8 @@
 import React from 'react';
+import { tableStyle, bigHeadingStyle, smallHeadingStyle } from './HomeStyles';
 
-const Home = () => {
-	const tableStyle = {
-		height : '300px',
-		marginTop:  '10%',
-  		marginLeft: '35%'
-	}
-	const bigHeadingStyle = {
-		color : '#dbd5d0',
-		fontWeight: 'bold',
-		fontSize : '350%'
-	}
-	const smallHeadingStyle = {
-		color : '#dbd5d0',
-		fontWeight: 'bold',
-		fontSize : '150%'
-	}
-	return (
-		
+const HomeView = () => {
+	return(
 		<table style = {tableStyle}>
 		  <tbody>
 		    <tr>
@@ -28,8 +13,7 @@ const Home = () => {
 		    </tr>
 		  </tbody>
 		</table>
-		    
 	);
 }
 
-export default Home;
+export default HomeView;

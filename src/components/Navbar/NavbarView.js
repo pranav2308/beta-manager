@@ -1,28 +1,12 @@
 import React from 'react';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink } from 'mdbreact';
-
 import './Navbar.css';
 
-class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      collapse: false,
-      isWideEnough: false,
-    };
-    this.onClick = this.onClick.bind(this);
-  }
+const NavbarView = (props) => {
+	
+	const { userAuthenticated, onClick, collapse, isWideEnough } = props;
 
-  onClick() {
-    this.setState({
-      collapse: !this.state.collapse,
-    });
-  }
-
-  render() {
-
-    const { userAuthenticated } = this.props;
-    let navbarRenderContent, logoRoute;
+	let navbarRenderContent, logoRoute;
     
     if(userAuthenticated){
       
@@ -63,15 +47,15 @@ class Navbar extends React.Component {
             <MDBNavbarBrand href={ logoRoute }>
               <strong>Beta Manager</strong>
             </MDBNavbarBrand>
-            {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
-            <MDBCollapse isOpen={this.state.collapse} navbar>
+            {!isWideEnough && <MDBNavbarToggler onClick={onClick} />}
+            <MDBCollapse isOpen={collapse} navbar>
               { navbarRenderContent }
             </MDBCollapse>
           </MDBNavbar>
         </header>
       </div>
     );
-  }
+
 }
 
-export default Navbar;
+export default NavbarView;
