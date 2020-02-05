@@ -8,8 +8,9 @@ import '../../../node_modules/mdbreact/dist/css/mdb.css';
 
 import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
-import Register from '../Register/Register';
-import Login from '../Login/Login';
+//import Register from '../Register/Register';
+
+import { Login, Register } from '../Authentication';
 import AuthorizationProtectedRoute from '../PrivateRoutes/AuthorizationProtectedRoute';
 import Dashboard from '../Dashboard';
 import IVSRouting from '../Strategies/IVS/IVSRouting';
