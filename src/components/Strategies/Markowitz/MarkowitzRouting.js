@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import {InputProtectedRoute} from '../Utils';
-import MarkowitzDescription from './MarkowitzDescription/MarkowitzDescription';
-import InputMarkowitz from './InputMarkowitz/InputMarkowitz';
-import MarkowitzVisualize from './MarkowitzVisualize/MarkowitzVisualize';
-import MarkowitzProcessing from './MarkowitzProcessing/MarkowitzProcessing';
+import MarkowitzDescription from './MarkowitzDescription';
+import InputMarkowitz from './InputMarkowitz';
+import MarkowitzVisualize from './MarkowitzVisualize';
+import MarkowitzProcessing from './MarkowitzProcessing';
 
 const defaultState = {
 	inputsDefined : false,
