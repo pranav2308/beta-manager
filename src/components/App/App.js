@@ -8,15 +8,14 @@ import '../../../node_modules/mdbreact/dist/css/mdb.css';
 
 import Navbar from '../Navbar';
 import Home from '../Home';
-//import Register from '../Register/Register';
+
 
 import { Login, Register } from '../Authentication';
-import AuthorizationProtectedRoute from '../PrivateRoutes/AuthorizationProtectedRoute';
+import { AuthorizationProtectedRoute, Logout } from '../../Utils';
 import Dashboard from '../Dashboard';
 import IVSRouting from '../Strategies/IVS/IVSRouting';
 import MarkowitzRouting from '../Strategies/Markowitz/MarkowitzRouting';
-import Logout from '../Logout/Logout';
-import PageNotFound from '../PageNotFound/PageNotFound';
+import PageNotFound from '../PageNotFound';
 import './App.css';
 
 const emptyUser = {

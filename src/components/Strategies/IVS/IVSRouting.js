@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import InputProtectedRoute from '../../PrivateRoutes/InputProtectedRoute';
+import {InputProtectedRoute} from '../Utils';
 import IVSDescription from './IVSDescription/IVSDescription';
 import InputIVS from './InputIVS/InputIVS';
 import IVSVisualize from './IVSVisualize/IVSVisualize';

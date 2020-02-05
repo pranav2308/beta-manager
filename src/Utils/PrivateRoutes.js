@@ -11,4 +11,6 @@ const AuthorizationProtectedRoute = (props) => {
 	}
 	return <Redirect to = "/login"/>
 }
-export default AuthorizationProtectedRoute;
+
+
+export { AuthorizationProtectedRoute };

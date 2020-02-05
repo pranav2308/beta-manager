@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import InputProtectedRoute from '../../PrivateRoutes/InputProtectedRoute';
+import {InputProtectedRoute} from '../Utils';
 import MarkowitzDescription from './MarkowitzDescription/MarkowitzDescription';
 import InputMarkowitz from './InputMarkowitz/InputMarkowitz';
 import MarkowitzVisualize from './MarkowitzVisualize/MarkowitzVisualize';

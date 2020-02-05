@@ -1,35 +1,10 @@
 import React from 'react';
 import { MDBBtn } from 'mdbreact';
+import { tableStyle, bigHeadingStyle, smallHeadingStyle, buttonStyle } from './PageNotFoundStyles';
 
+const PageNotFoundView = (props) => {
 
-const onReturnToDashboardButtonClick = (props) => {
-		props.history.push('/dashboard');
-	}
-
-const PageNotFound = (props) => {
-	
-	const tableStyle = {
-		height : '300px',
-		marginTop:  '10%',
-  		marginLeft: 'auto',
-  		marginRight : 'auto'
-	}
-
-	const bigHeadingStyle = {
-		color : '#dbd5d0',
-		fontWeight: 'bold',
-		fontSize : '350%'
-	}
-
-	const smallHeadingStyle = {
-		color : '#dbd5d0',
-		fontWeight: 'bold',
-		fontSize : '150%'
-	}
-
-	const buttonStyle = {
-		marginTop: '15%'
-	}
+	const { onReturnToDashboardButtonClick, push } = props;
 
 	return (
 
@@ -49,7 +24,7 @@ const PageNotFound = (props) => {
                       color="dark-green"
                       className="mb-3"
                       type="button"
-                      onClick = {() => {onReturnToDashboardButtonClick(props)}}>
+                      onClick = {() => {onReturnToDashboardButtonClick(push)}}>
 		                Return to Dashboard
 		            </MDBBtn>
 		      </td>
@@ -60,4 +35,4 @@ const PageNotFound = (props) => {
 	);
 }
 
-export default PageNotFound;
+export default PageNotFoundView;

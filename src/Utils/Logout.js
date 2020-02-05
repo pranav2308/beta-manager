@@ -7,4 +7,4 @@ const Logout = (props) => {
 	return (<Component />);
 }
 
-export default Logout;
+export { Logout };

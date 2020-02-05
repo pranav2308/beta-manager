@@ -1,7 +1,8 @@
 import React from "react";
 import { Route, Redirect } from 'react-router-dom';
 
-const InputProtectedRoute = (props) => {
+
+function InputProtectedRoute(props){
 
 	const { component : Component, inputsDefined, fallBackRoute } = props;
 	if(inputsDefined){
@@ -10,4 +11,4 @@ const InputProtectedRoute = (props) => {
 	return <Redirect to = {fallBackRoute}/>
 }
 
-export default InputProtectedRoute;
+export { InputProtectedRoute };

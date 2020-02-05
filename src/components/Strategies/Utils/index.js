@@ -1,0 +1,1 @@
+export { InputProtectedRoute } from './PrivateRoutes';
