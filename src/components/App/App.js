@@ -11,7 +11,7 @@ import Home from '../Home/Home';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import AuthorizationProtectedRoute from '../PrivateRoutes/AuthorizationProtectedRoute';
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from '../Dashboard';
 import IVSRouting from '../Strategies/IVS/IVSRouting';
 import MarkowitzRouting from '../Strategies/Markowitz/MarkowitzRouting';
 import Logout from '../Logout/Logout';

@@ -1,27 +1,17 @@
 import React from 'react';
+import { tableStyle, smallHeadingStyle } from './DashboardStyles';
 import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 
-const Dashboard = (props) => {
-	
-	const tableStyle = {
-		height : '300px',
-		marginTop:  '10%',
-  		marginLeft: '25%'
-	}
-	const smallHeadingStyle = {
-		color : '#dbd5d0',
-		fontWeight: 'bold',
-		fontSize : '150%'
-	}
+const DashboardView = (props) => {
 
-	const { url } = props.computedMatch;
-	
-	return (
+	const { url, fullName } = props;
+
+	return(
 		<table style = {tableStyle}>
 		  <tbody>
 		    <tr>
-		      <td className="align-middle text-center" style = {smallHeadingStyle}>{`Welcome ${props.user.fullName}! Please choose the allocation strategy from below:`}</td>
+		      <td className="align-middle text-center" style = {smallHeadingStyle}>{`Welcome ${fullName}! Please choose the allocation strategy from below:`}</td>
 		    </tr>
 		    <tr>
 		      <td className="align-middle text-center" style = {smallHeadingStyle}>
@@ -40,4 +30,4 @@ const Dashboard = (props) => {
 	);
 }
 
-export default Dashboard;
+export default DashboardView;
