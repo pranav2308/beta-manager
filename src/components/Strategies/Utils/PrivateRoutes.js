@@ -11,7 +11,7 @@ function InputProtectedRoute(props){
 	return <Redirect to = {fallBackRoute}/>
 }
 
-function redirectProcessing(allocationStatus, url, strategy){
+function redirectProcessing(allocationStatus, url, flushInputAndAllocation, strategy){
 
 	if(allocationStatus === 'valid'){
 		const newUrl = url.split('/').slice(0, -1).join('/').concat('/', strategy,'Visualize');
@@ -20,10 +20,12 @@ function redirectProcessing(allocationStatus, url, strategy){
 	else if(allocationStatus === 'invalid'){
 		alert('Invalid inputs! Please try again.');
 		const newUrl = url.split('/').slice(0, -1).join('/').concat('/Input', strategy);
+		flushInputAndAllocation();
 		return <Redirect to = {newUrl}/>
 	}
 	else if(allocationStatus === 'error'){
 		alert('Oops! Something went wrong on our server. Try loggin-in another time.');
+		flushInputAndAllocation();
 		const newUrl = url.split('/').slice(0, -1).join('/').concat('/Input', strategy);
 		return <Redirect to = {newUrl}/>
 	}

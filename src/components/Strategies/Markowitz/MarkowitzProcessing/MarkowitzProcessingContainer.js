@@ -4,11 +4,11 @@ import { redirectProcessing } from '../../Utils';
 
 const MarkowitzProcessing = (props) => {
 
-	const { allocationStatus } = props;
+	const { allocationStatus, flushInputAndAllocation } = props;
 	const url  = props.location.pathname;
 	
 	if(allocationStatus !== 'NotDefined'){
-		return redirectProcessing(allocationStatus, url, 'Markowitz')
+		return redirectProcessing(allocationStatus, url, flushInputAndAllocation, 'Markowitz')
 	}
 
 	return(

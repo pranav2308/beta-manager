@@ -39,7 +39,7 @@ class IVSRouting extends React.Component{
 			<Switch>
 				<Route exact path = {url} component = {IVSDescription}/>
 				<Route path = {url.concat('/InputIVS')} render = {(props) => <InputIVS {...props} {...this.props} defineInputs = {this.defineInputs} collectAllocation = {this.collectAllocation}/>}/>
-				<InputProtectedRoute path = {url.concat('/IVSProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} allocationStatus = {this.state.allocationStatus} component = {IVSProcessing}/>
+				<InputProtectedRoute path = {url.concat('/IVSProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} allocationStatus = {this.state.allocationStatus} flushInputAndAllocation = {this.flushInputAndAllocation} component = {IVSProcessing}/>
 				<InputProtectedRoute path = {url.concat('/IVSVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputIVS')} flushInputAndAllocation = {this.flushInputAndAllocation} allocation = {this.state.allocation} capital = {this.state.capital} component = {IVSVisualize}/>
 			</Switch>
 		);

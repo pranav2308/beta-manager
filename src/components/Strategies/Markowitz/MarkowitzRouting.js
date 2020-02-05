@@ -42,7 +42,7 @@ class MarkowitzRouting extends React.Component{
 			<Switch>
 				<Route exact path = {url} component = {MarkowitzDescription}/>
 				<Route path = {url.concat('/InputMarkowitz')} render = {(props) => <InputMarkowitz {...props} {...this.props} defineInputs = {this.defineInputs} collectAllocation = {this.collectAllocation}/>}/>
-				<InputProtectedRoute path = {url.concat('/MarkowitzProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} allocationStatus = {this.state.allocationStatus} component = {MarkowitzProcessing}/>
+				<InputProtectedRoute path = {url.concat('/MarkowitzProcessing')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} allocationStatus = {this.state.allocationStatus} flushInputAndAllocation = {this.flushInputAndAllocation} component = {MarkowitzProcessing}/>
 				<InputProtectedRoute path = {url.concat('/MarkowitzVisualize')} inputsDefined = {this.state.inputsDefined} fallBackRoute = {url.concat('/InputMarkowitz')} flushInputAndAllocation = {this.flushInputAndAllocation} allocation = {this.state.allocation} capital = {this.state.capital} component = {MarkowitzVisualize}/>
 			</Switch>
 		);

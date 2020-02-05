@@ -17,7 +17,6 @@ function fetchResponse(responseHeader){
 
 function processResponse(response, collectAllocation, capital){
 	if(response === 'invalid'){
-		console.log('in process response invalid');
 		collectAllocation('invalid', 'NotDefined', 'NotDefined');
 	}
 	else if(response === 'error'){

@@ -6,11 +6,11 @@ import { redirectProcessing } from '../../Utils';
 const IVSProcessing = (props) => {
 
 	
-	const { allocationStatus } = props;
+	const { allocationStatus, flushInputAndAllocation } = props;
 	const url  = props.location.pathname;
 	
 	if(allocationStatus !== 'NotDefined'){
-		return redirectProcessing(allocationStatus, url, 'IVS');	
+		return redirectProcessing(allocationStatus, url, flushInputAndAllocation, 'IVS');	
 	}
 
 	return (
