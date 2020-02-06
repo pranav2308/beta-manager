@@ -53,6 +53,9 @@ function onComputeButtonClick(strategy){
 	const { email } = this.props.user;
 	const { collectAllocation } = this.props;
 	const { push } = this.props.history;
+	
+	capital = Number(capital)
+	const capitalInCents = Math.round(capital * 100);
 
 	fetch('http://localhost:3000/'.concat(strategy), {
       method: 'post',
@@ -61,7 +64,7 @@ function onComputeButtonClick(strategy){
         email : email,
         tickerList : commaSepTickerList,
         windowLength : windowLength,
-        capital : capital
+        capital : capitalInCents
       })
     })
     .then(fetchResponse)

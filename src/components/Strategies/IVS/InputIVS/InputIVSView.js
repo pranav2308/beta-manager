@@ -54,7 +54,7 @@ const InputIVSView = (props) => {
 				            		</span>
       							</div>
   								
-				                <CurrencyInput prefix="$" value = {capital} decimalSeparator="." thousandSeparator="," precision="0" className = "currencyInput" onChangeEvent = {onCapitalChange}/>
+				                <CurrencyInput prefix="$" value = {capital} decimalSeparator="." thousandSeparator="," precision="2" className = "currencyInput" onChangeEvent = {onCapitalChange}/>
 						   </div>
 		                </div>
 		                <div className="text-center py-4 mt-3">
