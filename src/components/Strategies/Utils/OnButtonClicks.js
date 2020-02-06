@@ -1,6 +1,36 @@
 import React from 'react';
 import isInputFormValid from './Validator';
 
+
+
+function callProcessingComponent(url, strategy, push){
+	const newUrl = url.split('/').slice(0, -1).join('/').concat('/', strategy, 'Processing')
+	push(newUrl);
+}
+
+function processInputTickerList(tickerList){
+	const upperCaseList = tickerList.toUpperCase();
+	return upperCaseList.split(' ').join('');
+}
+
+function getCapitalInCents(capital){
+	const capitalInNumber = Number(capital);
+	return Math.round(capitalInNumber * 100);
+}
+
+function makeRequest(strategy, email, commaSepTickerList, windowLength, capitalInCents){
+	return fetch('http://localhost:3000/'.concat(strategy), {
+	  method: 'post',
+	  headers : {'Content-Type' : 'application/json'},
+	  body : JSON.stringify({
+	    email : email,
+	    tickerList : commaSepTickerList,
+	    windowLength : windowLength,
+	    capital : capitalInCents
+	  })
+	});
+}
+
 function fetchResponse(responseHeader){
 	if(responseHeader.status === 200){
 		return responseHeader.json();  
@@ -40,36 +70,21 @@ function onComputeButtonClick(strategy){
 	if(isInputFormValid(tickerList, windowLength, capital)){
 
 		this.props.defineInputs();
-	
-		//process input
-		const upperCaseList = tickerList.toUpperCase();
-		const commaSepTickerList = upperCaseList.split(' ').join('');
-		this.setState( { tickerList: commaSepTickerList });
 
-		//call processing page till the result arrives.
-
-		const url  = this.props.location.pathname;
-		const newUrl = url.split('/').slice(0, -1).join('/').concat('/', strategy, 'Processing')
-		this.props.history.push(newUrl);
-
-
+		const { pathname : url } = this.props.location;
 		const { email } = this.props.user;
 		const { collectAllocation } = this.props;
 		const { push } = this.props.history;
+	
+		//process input
+		const commaSepTickerList = processInputTickerList(tickerList);
+		this.setState( { tickerList: commaSepTickerList });
 
-		const capitalInNumber = Number(capital);
-		const capitalInCents = Math.round(capitalInNumber * 100);
+		callProcessingComponent(url, strategy, push);
+		
+		const capitalInCents = getCapitalInCents(capital);
 
-		fetch('http://localhost:3000/'.concat(strategy), {
-		  method: 'post',
-		  headers : {'Content-Type' : 'application/json'},
-		  body : JSON.stringify({
-		    email : email,
-		    tickerList : commaSepTickerList,
-		    windowLength : windowLength,
-		    capital : capitalInCents
-		  })
-		})
+		makeRequest(strategy, email, commaSepTickerList, windowLength, capitalInCents)
 		.then(fetchResponse)
 		.then(response => {
 			processResponse(response, collectAllocation, capital);
