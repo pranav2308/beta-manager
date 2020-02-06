@@ -47,7 +47,7 @@ const RegisterView = (props) => {
 	                        onChange = {onEmailChange}
 	                      />
 	                      <MDBInput
-	                        label="Type your password"
+	                        label="Password (min. 1 uppercase, 1 lowercase, 1 digit and length of 8)"
 	                        value = {password}
 	                        icon="lock"
 	                        group

@@ -1,5 +1,5 @@
 import React from 'react';
-import isInputFormValid from './Validator';
+import isInputFormValid from './InputFormValidator';
 
 
 
