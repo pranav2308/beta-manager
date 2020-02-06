@@ -1,4 +1,5 @@
 import React from 'react';
+import isInputFormValid from './Validator';
 
 function fetchResponse(responseHeader){
 	if(responseHeader.status === 200){
@@ -34,46 +35,51 @@ function processError(error, push){
 
 function onComputeButtonClick(strategy){
 	
-	//Input validation completed.
 
-	this.props.defineInputs();
+	const { windowLength, capital, tickerList } = this.state;
+	if(isInputFormValid(tickerList, windowLength, capital)){
+
+		this.props.defineInputs();
 	
-	//process input
-	const upperCaseList = this.state.tickerList.toUpperCase();
-	const commaSepTickerList = upperCaseList.split(' ').join('');
-	this.setState( { tickerList: commaSepTickerList });
+		//process input
+		const upperCaseList = tickerList.toUpperCase();
+		const commaSepTickerList = upperCaseList.split(' ').join('');
+		this.setState( { tickerList: commaSepTickerList });
 
-	//call processing page till the result arrives.
+		//call processing page till the result arrives.
 
-	const url  = this.props.location.pathname;
-	const newUrl = url.split('/').slice(0, -1).join('/').concat('/', strategy, 'Processing')
-	this.props.history.push(newUrl);
+		const url  = this.props.location.pathname;
+		const newUrl = url.split('/').slice(0, -1).join('/').concat('/', strategy, 'Processing')
+		this.props.history.push(newUrl);
 
-	const { windowLength, capital } = this.state;
-	const { email } = this.props.user;
-	const { collectAllocation } = this.props;
-	const { push } = this.props.history;
+
+		const { email } = this.props.user;
+		const { collectAllocation } = this.props;
+		const { push } = this.props.history;
+
+		const capitalInNumber = Number(capital);
+		const capitalInCents = Math.round(capitalInNumber * 100);
+
+		fetch('http://localhost:3000/'.concat(strategy), {
+		  method: 'post',
+		  headers : {'Content-Type' : 'application/json'},
+		  body : JSON.stringify({
+		    email : email,
+		    tickerList : commaSepTickerList,
+		    windowLength : windowLength,
+		    capital : capitalInCents
+		  })
+		})
+		.then(fetchResponse)
+		.then(response => {
+			processResponse(response, collectAllocation, capital);
+		})
+		.catch(error => {
+			processError(error, push);
+		});
+
+	}
 	
-	capital = Number(capital)
-	const capitalInCents = Math.round(capital * 100);
-
-	fetch('http://localhost:3000/'.concat(strategy), {
-      method: 'post',
-      headers : {'Content-Type' : 'application/json'},
-      body : JSON.stringify({
-        email : email,
-        tickerList : commaSepTickerList,
-        windowLength : windowLength,
-        capital : capitalInCents
-      })
-    })
-    .then(fetchResponse)
-    .then(response => {
-    	processResponse(response, collectAllocation, capital);
-    })
-    .catch(error => {
-    	processError(error, push);
-    });
 }
 
 function onProceedButtonClick(url, push, strategy){
