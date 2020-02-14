@@ -28,6 +28,9 @@ const MarkowitzDescriptionContent = () => {
 							</ol> 
 						</li>
 						<li>
+							Please make sure that you input at-least 2 ticker symobls for Markowitz. This is becuase Markowitz allocation computes correlation between underlying assets and it can't compute one if there is only one asset in the portfolio.  
+						</li>
+						<li>
 							We request the users to use ticker symbols as per mentioned on <a href="https://finance.yahoo.com/" class="text-decoration-none">Yahoo finance</a> website. 
 							This is because different websites use different ticker symbols for same underlying asset which might get confusing. Also, as we use Yahoo finance APIs for our backend work, this would ensure that we provide you the information for the same asset that you intended in the first place.  
 						</li>
