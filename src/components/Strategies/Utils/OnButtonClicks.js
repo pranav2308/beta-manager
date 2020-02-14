@@ -19,7 +19,7 @@ function getCapitalInCents(capital){
 }
 
 function makeRequest(strategy, email, commaSepTickerList, windowLength, capitalInCents){
-	return fetch('http://localhost:3000/'.concat(strategy), {
+	return fetch('https://beta-manager-server.herokuapp.com/'.concat(strategy), {
 	  method: 'post',
 	  headers : {'Content-Type' : 'application/json'},
 	  body : JSON.stringify({

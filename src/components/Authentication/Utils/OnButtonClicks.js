@@ -5,7 +5,7 @@ function onLoginButtonClick(){
 
 	const{ email, password } = this.state;
 
-	fetch('http://localhost:3000/login', {
+	fetch('https://beta-manager-server.herokuapp.com/login', {
 	  method: 'post',
 	  headers : {'Content-Type' : 'application/json'},
 	  body : JSON.stringify({
@@ -56,7 +56,7 @@ function onRegisterButtonClick(){
 	const { fullName, email, password, confirmPassword : reTypedPassword, country } = this.state;
 
 	if(isValidRegistration(fullName, email, password, reTypedPassword)){
-		fetch('http://localhost:3000/register', {
+		fetch('https://beta-manager-server.herokuapp.com/register', {
 			method: 'post',
 			headers : {'Content-Type' : 'application/json'},
 			body : JSON.stringify({
