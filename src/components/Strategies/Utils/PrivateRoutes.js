@@ -18,7 +18,7 @@ function redirectProcessing(allocationStatus, url, flushInputAndAllocation, stra
 		return <Redirect to = {newUrl}/>
 	}
 	else if(allocationStatus === 'invalid'){
-		alert('Invalid inputs! Please try again.');
+		alert('Seems like you made a mistake in writing ticker symbols. Please read the instructions and try again.');
 		const newUrl = url.split('/').slice(0, -1).join('/').concat('/Input', strategy);
 		flushInputAndAllocation();
 		return <Redirect to = {newUrl}/>
