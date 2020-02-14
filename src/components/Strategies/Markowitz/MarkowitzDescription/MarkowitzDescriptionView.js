@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBBtn, MDBIcon } from 'mdbreact';
-
+import MarkowitzDescriptionContent from './MarkowitzDescriptionContent';
 import { contentStyle, tableStyle, bigHeadingStyle, smallHeadingStyle, buttonStyle } from './MarkowitzDescriptionStyles';
 
 const MarkowitzDescriptionView = (props) => {
@@ -15,7 +15,7 @@ const MarkowitzDescriptionView = (props) => {
 			      <td className="align-middle text-center" style = {bigHeadingStyle}>Markowitz Portfolio Optimization Strategy</td>
 			    </tr>
 			    <tr>
-			      <td className="align-middle text-center" style = {smallHeadingStyle}>[Short Description of Markowitz Strategy]</td>
+			      <td className="align-middle text-center" style = {smallHeadingStyle}><MarkowitzDescriptionContent/></td>
 			    </tr>
 			  </tbody>
 			</table>

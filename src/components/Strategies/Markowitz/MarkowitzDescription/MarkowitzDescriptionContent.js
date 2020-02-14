@@ -1,28 +1,29 @@
 import React from 'react';
 import { MDBContainer } from 'mdbreact';
 
-const IVSDescriptionContent = () => {
+
+const MarkowitzDescriptionContent = () => {
 	return(
-		<div>
 
 			<MDBContainer style = {{overflowY : 'scroll', position : 'relative', height : '400px', maxWidth : '1000px'}}>
 				
 				<p className = "text-center text-justify">
-					Inverse Variance strategy is also known as 'Risk Parity approach' in financial jargon. 
-					Variance measures the dispersion in the returns of the securities involved in the portfolio, which correlates to risk of acquiring that particular asset.
+					Markowitz model (also known as Markowitz Portfolio Theory) is Nobel Prize winning model developed by Harry Markowitz. 
+					This theory argues that portfolio’s return and its risk always go together. 
+					The theory entails a methodology of constructing a portfolio for optimizing the expected return based on given level of market risk and likewise, for a given expected return, constructing a portfolio with minimum market risk possible.  
+					According to the theory, by adjusting the weights of assets in underlying portfolio, we can construct an ‘efficient frontier’ of optimal portfolios where we can get the portfolio which has least risk for given level of return.
 				</p>
 				<p className = "text-center text-justify">
-					In this strategy, each security is weighted in inverse proportion to its variance i.e. lower the variance (or the risk), higher the weightage. 
-					This strategy ensures that your resultant portfolio has the minimum variance among all possible weighted averages. 
-					This way you get the ‘lowest risk’ portfolio in terms of variance.    
+					Don’t worry if you don’t understand the complicated mathematical jargon. 
+					You just give us the assets you would like to have in your portfolio and we would do the difficult job of computing the optimal weight allocation for you by Markowitz theory.     
 				</p>
 				<p className="font-weight-light font-italic text-left">
 					Instructions for the next page:
 					<ul>
-						<li>For Inverse variance strategy, we require three things from you:
+						<li>For Markowitz strategy, we require three things from you:
 							<ol>
 								<li>List of ticker symbols of securities that you are interested in</li>
-								<li>Window length for which you want to measure the variance of the securities(the more the better!)</li>
+								<li>Window length for which you want to measure the variance & correlations of the securities(the more the better!)</li>
 								<li>Capital available with you.</li>
 							</ol> 
 						</li>
@@ -37,8 +38,9 @@ const IVSDescriptionContent = () => {
 				</p>
 
 			</MDBContainer>
-		</div>
+
 	);
+
 }
 
-export default IVSDescriptionContent;
+export default MarkowitzDescriptionContent;
