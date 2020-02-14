@@ -72,14 +72,18 @@ function onRegisterButtonClick(){
 			  return response.json();  
 			}
 			else if(response.status === 409){
-			  alert('User with given email already exists! Try logging-in or register with different email')
-			  return null;
+			  	alert('User with given email already exists! Try logging-in or register with different email')
+			}
+			else if(response.status === 406){
+				//From credential validator of server side. This case should not arise. 
+				alert('Credentials are in invalid format! Please check and enter again.');
 			}
 			else{
 			  //if rsposne.status === 500
 			  alert('Oops! Something went wrong on our server. Try registering another time.')
-			  return null
+			  
 			}
+			return null;
 		})
 		.then(userObjResponse => {
 			if(userObjResponse){

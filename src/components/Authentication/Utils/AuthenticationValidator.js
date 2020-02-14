@@ -27,7 +27,7 @@ function isValidRegistration(name, email, password, reTypedPassword){
 		return false;	
 	}
 	if(!isPasswordValid(password)){
-		alert('Required password must have 1 Uppercase, 1 lowercase, 1 special character and at-least characters long! Please check and try again.');
+		alert('Required password must have 1 Uppercase, 1 lowercase and at-least 8 characters long! Please check and try again.');
 		return false;
 	}
 	if(!isPasswordMatching(password, reTypedPassword)){

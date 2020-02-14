@@ -1,5 +1,6 @@
 import React from 'react';
 import { MDBBtn, MDBIcon } from 'mdbreact';
+import IVSDescriptionContent from './IVSDescriptionContent';
 import { contentStyle, tableStyle, bigHeadingStyle, smallHeadingStyle, buttonStyle } from './IVSDescriptionStyles';
 
 const IVSDescriptionView = (props) => {
@@ -14,7 +15,7 @@ const IVSDescriptionView = (props) => {
 			      <td className="align-middle text-center" style = {bigHeadingStyle}>Inverse Variance Optimization Strategy</td>
 			    </tr>
 			    <tr>
-			      <td className="align-middle text-center" style = {smallHeadingStyle}>[Short Description of IVS]</td>
+			      <td className="align-middle text-center" style = {smallHeadingStyle}><IVSDescriptionContent /></td>
 			    </tr>
 			  </tbody>
 			</table>
