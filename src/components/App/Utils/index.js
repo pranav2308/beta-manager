@@ -1,0 +1,1 @@
+export { intialState, authenticateUser, flushUser } from './userData';

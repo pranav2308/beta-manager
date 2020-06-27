@@ -9,6 +9,7 @@ import '../../../node_modules/mdbreact/dist/css/mdb.css';
 import Navbar from '../Navbar';
 import Home from '../Home';
 
+import { intialState, authenticateUser, flushUser } from './Utils';
 
 import { Login, Register } from '../Authentication';
 import { AuthorizationProtectedRoute, Logout } from '../../Utils';
@@ -18,15 +19,7 @@ import MarkowitzRouting from '../Strategies/Markowitz/MarkowitzRouting';
 import PageNotFound from '../PageNotFound';
 import './App.css';
 
-const emptyUser = {
-  userID : '',
-  fullName : '',
-  email : '',
-  country : '',
-  joinDate : '',
-  nIVS : '',
-  nMarkowitz: ''  
-}
+
 
 
 class App extends React.Component{
@@ -34,22 +27,10 @@ class App extends React.Component{
   constructor(props){
     
     super(props);
-    this.state = {
-      userAuthenticated : false,
-      user : emptyUser
-    }
-  }
+    this.state = intialState;
 
-  authenticateUser = (user) => {
-    if(!this.state.userAuthenticated){
-      this.setState({ userAuthenticated : true, user: user });  
-    }
-  }
-
-  flushUser = () => {
-    if(this.state.userAuthenticated){
-      this.setState({ userAuthenticated : false, user: emptyUser });  
-    }
+    this.authenticateUser = authenticateUser.bind(this);
+    this.flushUser = flushUser.bind(this);
   }
 
   render(){
