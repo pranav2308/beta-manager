@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { MDBBtn } from 'mdbreact';
 import MarkowitzVisualizeView from './MarkowitzVisualizeView';
 import { getDummyData, updateData, onReturnToDashboardButtonClick, onTryAnotherInputButtonClick } from '../../Utils';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 
 function onTickerListChange(event){
 	this.setState({ tickerList : event.target.value});

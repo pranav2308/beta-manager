@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryChart, VictoryPie, VictoryTheme, VictoryContainer, VictoryLabel } from 'victory';
+import { VictoryPie, VictoryContainer, VictoryLabel } from 'victory';
 
 const PieChart = (props) => {
 

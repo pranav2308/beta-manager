@@ -1,6 +1,3 @@
-import React from 'react';
-
-
 function getMinAllocatedStock(allocation){
 	/*
 	* Returns the stock which has minimum allocation.
