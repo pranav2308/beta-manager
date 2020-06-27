@@ -2,7 +2,11 @@ import isValidRegistration from './AuthenticationValidator';
 
 
 function onLoginButtonClick(){
-
+	/*
+	* Send the email and password to server-api
+	* If the user is valid, then load the user
+	* Else display alert accordingly. 
+	*/
 	const{ email, password } = this.state;
 
 	fetch('https://beta-manager-server.herokuapp.com/login', {
@@ -52,6 +56,11 @@ function onLoginButtonClick(){
 }
 
 function onRegisterButtonClick(){
+	/*
+	* Send the registation info to server api
+	* If the info is valid and added to the database then load the user 
+	* else display the alert accordingly.
+	*/
 	
 	const { fullName, email, password, confirmPassword : reTypedPassword, country } = this.state;
 

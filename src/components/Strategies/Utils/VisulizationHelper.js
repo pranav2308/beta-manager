@@ -2,6 +2,10 @@ import React from 'react';
 
 
 function getMinAllocatedStock(allocation){
+	/*
+	* Returns the stock which has minimum allocation.
+	*/
+
 	let minAllocation = 100;
 	let minAllocatedStock = {};
 	allocation.forEach((allocationObj) => {
@@ -14,6 +18,12 @@ function getMinAllocatedStock(allocation){
 }
 
 function getDummyData(allocation){
+
+	/*
+	* Dummy data is produced by allocating highest 100% allocation to stock that has minimum actual allocation and -
+	* rest of the stock are given 0% allocation.
+	* This is done to produce pie-chart animation from dummy data -> actual data. 
+	*/
 
 	const minAllocatedStockTicker = getMinAllocatedStock(allocation).ticker;
 	const dummyData = allocation.map((allocationObj) => {

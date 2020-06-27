@@ -89,7 +89,6 @@ const RegisterView = (props) => {
 	                  <MDBModalFooter>
 	                    <div className="font-weight-light">
 	                      <p>Already a member? <span style = {loginLinkStyle} onClick = {onLoginLinkClick}>Log in</span></p>
-	                      <p>Forgot Password?</p>
 	                    </div>
 	                  </MDBModalFooter>
 	                </MDBCardBody>

@@ -9,6 +9,9 @@ function callProcessingComponent(url, strategy, push){
 }
 
 function processInputTickerList(tickerList){
+	/*
+	* Capitalize the user input ticker list and remove the spaces.
+	*/
 	const upperCaseList = tickerList.toUpperCase();
 	return upperCaseList.split(' ').join('');
 }
@@ -19,6 +22,9 @@ function getCapitalInCents(capital){
 }
 
 function makeRequest(strategy, email, commaSepTickerList, windowLength, capitalInCents){
+	/*
+	* Make request to strategy with given input to server-api.
+	*/
 	return fetch('https://beta-manager-server.herokuapp.com/'.concat(strategy), {
 	  method: 'post',
 	  headers : {'Content-Type' : 'application/json'},
@@ -65,6 +71,10 @@ function processError(error, push){
 
 function onComputeButtonClick(strategy){
 	
+	/*
+	* Gather the user inputs and call the server-api.
+	* Handle responses accordingly.
+	*/
 
 	const { windowLength, capital, tickerList } = this.state;
 	if(isInputFormValid(tickerList, windowLength, capital)){

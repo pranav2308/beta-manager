@@ -1,4 +1,7 @@
 function isTickerListEmpty(tickerList){
+	/*
+	* Ticker list cannnot be empty.
+	*/
 	return (!Boolean(tickerList.length));
 }
 
@@ -8,6 +11,9 @@ function isTickerListValid(tickerList){
 }
 
 function isWindowLengthValid(windowLength){
+	/*
+	* Window length should contain only digits.
+	*/
 	let reg = new RegExp('^[0-9]+$');
 	return reg.test(windowLength);
 }
@@ -17,6 +23,9 @@ function isWindowLengthPositive(windowLength){
 }
 
 function isCapitalValid(capital){
+	/*
+	* Capital cannot be 0.
+	*/
 	const capitalInNumber = new Number(capital);
 	if(capitalInNumber > 0){
 		return true;
@@ -26,6 +35,9 @@ function isCapitalValid(capital){
 
 
 function isInputFormValid(tickerList, windowLength, capital){
+	/*
+	* If ticker list, window length and capital is valid then return true.
+	*/
 	
 	if(isTickerListEmpty(tickerList)){
 		alert('Your ticker list cannot be empty! Please check and try again.')
